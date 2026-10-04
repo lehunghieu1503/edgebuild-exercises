@@ -1,0 +1,43 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 28, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_CXX_COMPILER_LAUNCHER": "ccache"
+      }
+    },
+    {
+      "name": "x86_64-clang18",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-18",
+        "CMAKE_CXX_COMPILER": "clang++-18"
+      }
+    },
+    {
+      "name": "x86_64-gcc11",
+      "inherits": "base",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc-11",
+        "CMAKE_CXX_COMPILER": "g++-11"
+      }
+    },
+    {
+      "name": "aarch64",
+      "inherits": "base",
+      "toolchainFile": "${sourceDir}/cmake/aarch64-linux-gnu.cmake"
+    }
+  ],
+  "buildPresets": [
+    { "name": "x86_64-clang18", "configurePreset": "x86_64-clang18" },
+    { "name": "x86_64-gcc11", "configurePreset": "x86_64-gcc11" },
+    { "name": "aarch64", "configurePreset": "aarch64" }
+  ]
+}

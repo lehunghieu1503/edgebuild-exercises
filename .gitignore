@@ -1,0 +1,21 @@
+# Build output
+build/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+
+# Models, datasets, checkpoints: downloaded or generated, never committed
+*.onnx
+*.engine
+*.pt
+*.pth
+data/
+checkpoints/
